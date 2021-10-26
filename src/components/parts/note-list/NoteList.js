@@ -4,7 +4,6 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import Divider from '@mui/material/Divider';
 
 export default function NoteList() {
   return (
@@ -21,11 +20,6 @@ export default function NoteList() {
               <ListItemText primary="k8s Notes" />
             </ListItemButton>
           </ListItem>
-        </List>
-      </nav>
-      <Divider />
-      <nav aria-label="secondary mailbox folders">
-        <List>
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemText primary="Trash" />
