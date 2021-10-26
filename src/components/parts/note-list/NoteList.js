@@ -30,23 +30,23 @@ const NoteList = (props) => {
   );
 
   return (
-    <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+    <Box sx={{width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}>
       <nav aria-label="main mailbox folders">
         <List>
           {
             notes != null && notes.length > 0
-            ? notes.map(
+              ? notes.map(
               (note, index) => (
                 <ListItem disablePadding>
                   <ListItemButton>
-                    <ListItemText primary={note.title} />
+                    <ListItemText primary={note.title} id={"note-" + index} note-index={index} />
                   </ListItemButton>
                 </ListItem>
               ),
               )
               : <ListItem disablePadding>
                 <ListItemButton>
-                  <ListItemText primary="No Notes" />
+                  <ListItemText primary="No Notes"/>
                 </ListItemButton>
               </ListItem>
           }
