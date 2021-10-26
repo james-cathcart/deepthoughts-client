@@ -44,7 +44,11 @@ const NoteList = props => {
               (note, index) => (
                 <ListItem disablePadding>
                   <ListItemButton>
-                    <ListItemText primary={note.body.split("\n")[0]} id={"note-" + index} note-index={index} />
+                    <ListItemText
+                      primary={note.body.split("\n")[0].replace(/<\/?[^>]+(>|$)/g, "")}
+                      id={"note-" + index}
+                      note-index={index}
+                    />
                   </ListItemButton>
                 </ListItem>
               ),
