@@ -1,8 +1,9 @@
 import './App.css';
+import {connect} from 'react-redux';
 import SiteAppBar from "./components/parts/site-app-bar/SiteAppBar";
 import HomePage from "./components/pages/home/HomePage";
 
-function App() {
+const App = props => {
   return (
     <div className="App">
       <SiteAppBar></SiteAppBar>
@@ -10,5 +11,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
