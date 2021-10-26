@@ -1,11 +1,14 @@
+import './note-list.css'
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-// import {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {connect} from "react-redux";
+import notesReducer from "../../../reducers/notes-reducer";
+import {Button} from "@mui/material";
 
 const NoteList = props => {
 
@@ -32,6 +35,7 @@ const NoteList = props => {
 
   return (
     <Box sx={{width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}>
+      <Button id="newNoteBtn">+ Note</Button>
       <nav aria-label="main mailbox folders">
         <List>
           {

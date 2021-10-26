@@ -10,7 +10,7 @@ import '@fontsource/roboto/700.css';
 import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
 import {createStore} from "redux";
 import {Provider} from "react-redux";
-import initialState from "./constants/InitialState";
+import notesReducer from "./reducers/notes-reducer";
 
 const darkTheme = createTheme({
   palette: {
@@ -18,11 +18,7 @@ const darkTheme = createTheme({
   },
 });
 
-export default function notes(state = initialState, action) {
-  return state;
-}
-
-const store = createStore(notes);
+const store = createStore(notesReducer);
 
 ReactDOM.render(
   <React.StrictMode>

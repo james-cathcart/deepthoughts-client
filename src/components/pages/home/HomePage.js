@@ -7,8 +7,12 @@ const HomePage = (props) => {
 
   return (
     <div className="homeContainer">
-      <NoteList />
-      <NoteEditor />
+      <div className="noteListContainer">
+        <NoteList/>
+      </div>
+      <div className="noteEditorContainer">
+        <NoteEditor/>
+      </div>
     </div>
   );
 
