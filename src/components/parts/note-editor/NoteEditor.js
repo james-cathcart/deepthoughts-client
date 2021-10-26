@@ -4,7 +4,7 @@ import {TextareaAutosize} from "@mui/material";
 const NoteEditor = () => {
 
   return (
-    <div >
+    <div class="editorContainer">
       <TextareaAutosize
         class="editorContainer"
         aria-label="empty textarea"
