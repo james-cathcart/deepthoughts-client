@@ -13,7 +13,7 @@ const NoteEditor = () => {
   // };
 
   return (
-    <div class="editorContainer">
+    <div className="editorContainer">
         <Editor
           onInit={(evt, editor) => editorRef.current = editor}
           initialValue="<p>This is the initial content of the editor.</p>"

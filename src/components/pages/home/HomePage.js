@@ -3,10 +3,10 @@ import * as React from 'react';
 import NoteList from "../../parts/note-list/NoteList";
 import NoteEditor from "../../parts/note-editor/NoteEditor";
 
-const HomePage = props => {
+const HomePage = (props) => {
 
   return (
-    <div class="homeContainer">
+    <div className="homeContainer">
       <NoteList />
       <NoteEditor />
     </div>
