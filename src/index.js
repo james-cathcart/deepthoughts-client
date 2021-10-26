@@ -10,7 +10,7 @@ import '@fontsource/roboto/700.css';
 import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
 import {createStore} from "redux";
 import {Provider} from "react-redux";
-import notesReducer from "./reducers/notes-reducer";
+import { notesReducer } from "./reducers/index";
 
 const darkTheme = createTheme({
   palette: {

@@ -13,8 +13,6 @@ const NoteEditor = (props) => {
   //   }
   // };
 
-
-
   return (
     <div className="editorContainer">
         <Editor

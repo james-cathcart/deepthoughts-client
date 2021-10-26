@@ -5,9 +5,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import {useEffect, useState} from "react";
 import {connect} from "react-redux";
-import notesReducer from "../../../reducers/notes-reducer";
 import {Button} from "@mui/material";
 
 const NoteList = props => {
@@ -33,29 +31,50 @@ const NoteList = props => {
   //   }
   // );
 
+
+  const onNewNoteClick = () => {
+    props.dispatch({
+      type: 'NEW_NOTE',
+    })
+  };
+
+  const onNoteClick = (event) => {
+
+    let nextCurrentNote = props.notes[event.currentTarget.noteindex];
+
+    props.dispatch({
+      type: 'CURRENT_NOTE',
+      payload: {
+        currentNote: nextCurrentNote
+      }
+    })
+  };
+
   return (
     <Box sx={{width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}>
-      <Button id="newNoteBtn">+ Note</Button>
+      <Button id="newNoteBtn" onClick={onNewNoteClick}>+ Note</Button>
       <nav aria-label="main mailbox folders">
         <List>
           {
             props.notes != null && props.notes.length > 0
               ? props.notes.map(
               (note, index) => (
-                <ListItem disablePadding>
+                <ListItem key={"li-" + index} disablePadding>
                   <ListItemButton>
                     <ListItemText
                       primary={note.body.split("\n")[0].replace(/<\/?[^>]+(>|$)/g, "").substr(0, 25)}
+                      noteid={note.id}
                       id={"note-" + index}
-                      note-index={index}
+                      noteindex={index}
+                      onClick={onNoteClick}
                     />
                   </ListItemButton>
                 </ListItem>
               ),
               )
-              : <ListItem disablePadding>
+              : <ListItem key="nilkey" disablePadding>
                 <ListItemButton>
-                  <ListItemText primary="No Notes"/>
+                  <ListItemText key="nilkey" primary="No Notes"/>
                 </ListItemButton>
               </ListItem>
           }
@@ -69,5 +88,4 @@ const NoteList = props => {
 const mapStateToProps = (state) => {
   return { notes: state.notes };
 }
-
 export default connect(mapStateToProps)(NoteList);
