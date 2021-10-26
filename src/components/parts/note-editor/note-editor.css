@@ -1,3 +1,10 @@
 .editorContainer {
     flex-grow: 1;
 }
+
+.editorText {
+    background-color: #444;
+    color: #CCC;
+    width: 100%;
+    border-radius: 10px;
+}
