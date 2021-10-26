@@ -7,6 +7,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import {connect} from "react-redux";
 import {Button} from "@mui/material";
+import {createNewNote, updateCurrentNote} from "../../../actions";
 
 const NoteList = props => {
 
@@ -33,21 +34,18 @@ const NoteList = props => {
 
 
   const onNewNoteClick = () => {
-    props.dispatch({
-      type: 'NEW_NOTE',
-    })
+    console.log("dispatching new note action")
+    props.dispatch(
+      createNewNote()
+    );
   };
 
   const onNoteClick = (event) => {
-
+    console.log("dispatching current note update action")
     let nextCurrentNote = props.notes[event.currentTarget.noteindex];
-
-    props.dispatch({
-      type: 'CURRENT_NOTE',
-      payload: {
-        currentNote: nextCurrentNote
-      }
-    })
+    props.dispatch(
+      updateCurrentNote(nextCurrentNote)
+    );
   };
 
   return (
