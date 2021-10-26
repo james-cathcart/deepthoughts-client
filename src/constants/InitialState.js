@@ -4,7 +4,7 @@ const initialState = {
     {
       id: "mockNote1ID",
       title: "Mock Note 1 Title",
-      body: "<div>Mock note 1 body</div>",
+      body: "<div>Mock note 1 body  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</div>",
       created: "2021-09-27T12:00:00",
       lastViewed: "2021-09-27T14:00:00",
     },
