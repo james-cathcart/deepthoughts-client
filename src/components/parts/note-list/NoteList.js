@@ -40,11 +40,20 @@ const NoteList = props => {
     );
   };
 
-  const onNoteClick = (event) => {
-    console.log("dispatching current note update action")
-    let nextCurrentNote = props.notes[event.currentTarget.noteindex];
+  const onNoteClick = (note) => {
+
+    // event.preventDefault();
+    // console.log("note selection event: ", event);
+    //
+    // console.log("dispatching current note update action")
+    // let nextNoteIndex = event.target.noteindex;
+    //
+    // console.log("looking up note index: ", nextNoteIndex)
+    // let nextCurrentNote = props.notes[event.target.noteindex];
+
+    console.log("changing to note with ID: ", note.id)
     props.dispatch(
-      updateCurrentNote(nextCurrentNote)
+      updateCurrentNote(note.id)
     );
   };
 
@@ -57,14 +66,17 @@ const NoteList = props => {
             props.notes != null && props.notes.length > 0
               ? props.notes.map(
               (note, index) => (
-                <ListItem key={"li-" + index} disablePadding>
+                <ListItem key={index}
+                          // noteid={note.id}
+                          // noteindex={index}
+                          // onClick={(e) => onNoteClick(e)}
+                          disablePadding>
                   <ListItemButton>
                     <ListItemText
                       primary={note.body.split("\n")[0].replace(/<\/?[^>]+(>|$)/g, "").substr(0, 25)}
                       noteid={note.id}
-                      id={"note-" + index}
                       noteindex={index}
-                      onClick={onNoteClick}
+                      onClick={() => onNoteClick(note)}
                     />
                   </ListItemButton>
                 </ListItem>
