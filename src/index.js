@@ -18,7 +18,7 @@ const darkTheme = createTheme({
   },
 });
 
-const store = createStore(notesReducer);
+const store = createStore(notesReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 ReactDOM.render(
   <React.StrictMode>
