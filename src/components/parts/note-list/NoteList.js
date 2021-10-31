@@ -38,6 +38,7 @@ const NoteList = props => {
     props.dispatch(
       createNewNote()
     );
+    console.log(props.notes);
   };
 
   const onNoteClick = (note) => {

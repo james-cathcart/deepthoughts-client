@@ -7,14 +7,23 @@ export function notesReducer(state = initialState, action) {
     case 'NEW_NOTE':
       console.log("notes reducer -> creating new note");
       let newNote = generateNewNote()
-      state.notes.push(newNote);
+      let notes = [...state.notes];
+      notes.push(newNote);
       console.log("new notes list: " + state.notes)
-      break;
+      return {
+        ...state,
+        notes
+      };
+      // break;
     case 'CURRENT_NOTE':
       console.log("current note: ", state.currentNote)
       console.log("notes reducer -> updating current note: ", action.payload);
-      state.currentNote = action.payload;
-      break;
+      let currentNote = action.payload;
+      return {
+        ...state,
+        currentNote
+      };
+      // break;
     default:
       console.log("notes reducer -> default action applied as no valid action type observed: ", action.type)
       break;
