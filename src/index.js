@@ -8,6 +8,9 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
+import {createStore} from "redux";
+import {Provider} from "react-redux";
+import { notesReducer } from "./reducers/index";
 
 const darkTheme = createTheme({
   palette: {
@@ -15,11 +18,15 @@ const darkTheme = createTheme({
   },
 });
 
+const store = createStore(notesReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={darkTheme}>
       <CssBaseline/>
-      <App/>
+      <Provider store={store}>
+        <App/>
+      </Provider>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')

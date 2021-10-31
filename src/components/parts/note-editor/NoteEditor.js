@@ -2,8 +2,9 @@ import './note-editor.css'
 import * as React from 'react';
 import { Editor } from "@tinymce/tinymce-react";
 import { useRef } from "react";
+import {connect} from "react-redux";
 
-const NoteEditor = () => {
+const NoteEditor = (props) => {
 
   const editorRef = useRef(null);
   // const log = () => {
@@ -16,7 +17,7 @@ const NoteEditor = () => {
     <div className="editorContainer">
         <Editor
           onInit={(evt, editor) => editorRef.current = editor}
-          initialValue="<p>This is the initial content of the editor.</p>"
+          initialValue={ props.currentNote.body }
           init={{
             skin: "oxide-dark",
             content_css: "dark",
@@ -39,4 +40,10 @@ const NoteEditor = () => {
   );
 
 }
-export default NoteEditor;
+// export default NoteEditor;
+
+const mapStateToProps = state => {
+  return { currentNote: state.currentNote };
+}
+
+export default connect(mapStateToProps)(NoteEditor);
