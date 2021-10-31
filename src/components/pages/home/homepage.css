@@ -1,0 +1,10 @@
+.homeContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.noteEditorContainer {
+    flex-grow: 1;
+    margin-left:6px;
+}
+
