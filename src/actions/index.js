@@ -10,7 +10,10 @@ export function updateCurrentNote(note) {
   return {
     type: 'CURRENT_NOTE',
     payload: {
-      currentNote: note
+      id: note.id,
+      body: note.body,
+      lastViewed: note.lastViewed,
+      created: note.created,
     }
   };
 }

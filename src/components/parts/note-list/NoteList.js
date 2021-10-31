@@ -53,7 +53,7 @@ const NoteList = props => {
 
     console.log("changing to note with ID: ", note.id)
     props.dispatch(
-      updateCurrentNote(note.id)
+      updateCurrentNote(note)
     );
   };
 
@@ -74,8 +74,8 @@ const NoteList = props => {
                   <ListItemButton>
                     <ListItemText
                       primary={note.body.split("\n")[0].replace(/<\/?[^>]+(>|$)/g, "").substr(0, 25)}
-                      noteid={note.id}
-                      noteindex={index}
+                      // noteid={note.id}
+                      // noteindex={index}
                       onClick={() => onNoteClick(note)}
                     />
                   </ListItemButton>
