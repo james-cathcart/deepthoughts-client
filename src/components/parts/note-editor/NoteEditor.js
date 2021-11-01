@@ -3,15 +3,20 @@ import * as React from 'react';
 import { Editor } from "@tinymce/tinymce-react";
 import { useRef } from "react";
 import {connect} from "react-redux";
+import {saveNoteChangeAction} from "../../../actions";
 
 const NoteEditor = (props) => {
 
   const editorRef = useRef(null);
-  // const log = () => {
-  //   if (editorRef.current) {
-  //     console.log(editorRef.current.getContent());
-  //   }
-  // };
+  const saveNoteChanges = () => {
+    if (editorRef.current) {
+      let newBody = editorRef.current.getContent();
+      console.log(newBody);
+      props.dispatch(
+        saveNoteChangeAction(props.currentNote, newBody)
+      )
+    }
+  };
 
   return (
     <div className="editorContainer">
@@ -35,7 +40,7 @@ const NoteEditor = (props) => {
             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
           }}
         />
-        {/*<button onClick={log}>Log editor content</button>*/}
+        <button onClick={saveNoteChanges}>Save Changes</button>
     </div>
   );
 

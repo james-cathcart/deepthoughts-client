@@ -3,18 +3,20 @@ import {v4 as uuidv4} from 'uuid';
 
 export function notesReducer(state = initialState, action) {
 
+  let notes = undefined;
+
   switch (action.type) {
     case 'NEW_NOTE':
       console.log("notes reducer -> creating new note");
       let newNote = generateNewNote()
-      let notes = [...state.notes];
+      notes = [...state.notes];
       notes.push(newNote);
       console.log("new notes list: " + state.notes)
       return {
         ...state,
         notes
       };
-      // break;
+    // break;
     case 'CURRENT_NOTE':
       console.log("current note: ", state.currentNote)
       console.log("notes reducer -> updating current note: ", action.payload);
@@ -23,7 +25,19 @@ export function notesReducer(state = initialState, action) {
         ...state,
         currentNote
       };
+    // break;
+
+    case 'SAVE_NOTE_CHANGES':
+      console.log("saving note changes...");
+      notes = [...state.notes]
+      let updatedNote = action.payload
+      notes = saveNoteChanges(notes, updatedNote);
+      return {
+        ...state,
+        notes
+      };
       // break;
+
     default:
       console.log("notes reducer -> default action applied as no valid action type observed: ", action.type)
       break;
@@ -39,4 +53,13 @@ function generateNewNote() {
     created: null,
     lastViewed: null,
   }
+}
+
+function saveNoteChanges(notes, updatedNote) {
+
+  let filteredNotes = notes.filter(note => note.id !== updatedNote.id);
+  filteredNotes.push(updatedNote);
+
+  return filteredNotes;
+
 }

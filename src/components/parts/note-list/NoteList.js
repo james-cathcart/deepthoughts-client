@@ -11,28 +11,6 @@ import {createNewNote, updateCurrentNote} from "../../../actions";
 
 const NoteList = props => {
 
-  // const [loaded, setLoaded] = useState(false);
-  // const [notes, setNotes] = useState([]);
-  //
-  // let url = new URL("http://localhost:8080/api/v1/note");
-  // let params = [
-  //   // ['userid', props.userid]
-  //   ['userid', 'asdfasdf']
-  // ];
-  // url.search = new URLSearchParams(params).toString();
-  //
-  // useEffect(
-  //   () => {
-  //     if (!loaded) {
-  //       fetch(url)
-  //       .then(res => res.json())
-  //       .then(jsonResponse => setNotes(jsonResponse))
-  //       .then(() => setLoaded(true))
-  //     }
-  //   }
-  // );
-
-
   const onNewNoteClick = () => {
     console.log("dispatching new note action")
     props.dispatch(
@@ -42,15 +20,6 @@ const NoteList = props => {
   };
 
   const onNoteClick = (note) => {
-
-    // event.preventDefault();
-    // console.log("note selection event: ", event);
-    //
-    // console.log("dispatching current note update action")
-    // let nextNoteIndex = event.target.noteindex;
-    //
-    // console.log("looking up note index: ", nextNoteIndex)
-    // let nextCurrentNote = props.notes[event.target.noteindex];
 
     console.log("changing to note with ID: ", note.id)
     props.dispatch(
