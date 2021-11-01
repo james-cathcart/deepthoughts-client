@@ -16,12 +16,13 @@ export function notesReducer(state = initialState, action) {
       };
       // break;
     case 'CURRENT_NOTE':
-      console.log("current note: ", state.currentNote)
+
+      console.log("current note: ", state.currentNoteIndex)
       console.log("notes reducer -> updating current note: ", action.payload);
-      let currentNote = action.payload;
+      let currentNoteIndex = action.payload;
       return {
         ...state,
-        currentNote
+        currentNoteIndex
       };
       // break;
     default:

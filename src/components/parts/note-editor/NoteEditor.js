@@ -17,7 +17,7 @@ const NoteEditor = (props) => {
     <div className="editorContainer">
         <Editor
           onInit={(evt, editor) => editorRef.current = editor}
-          initialValue={ props.currentNote.body }
+          initialValue={ props.notes[props.currentNoteIndex].body }
           init={{
             skin: "oxide-dark",
             content_css: "dark",
@@ -43,7 +43,10 @@ const NoteEditor = (props) => {
 // export default NoteEditor;
 
 const mapStateToProps = state => {
-  return { currentNote: state.currentNote };
+  return {
+    notes: state.notes,
+    currentNoteIndex: state.currentNoteIndex,
+  };
 }
 
 export default connect(mapStateToProps)(NoteEditor);

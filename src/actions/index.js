@@ -5,15 +5,10 @@ export function createNewNote() {
   };
 }
 
-export function updateCurrentNote(note) {
+export function updateCurrentNote(currentNoteIndex) {
   console.log("update current note action creator")
   return {
     type: 'CURRENT_NOTE',
-    payload: {
-      id: note.id,
-      body: note.body,
-      lastViewed: note.lastViewed,
-      created: note.created,
-    }
+    payload: currentNoteIndex
   };
 }

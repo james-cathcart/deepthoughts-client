@@ -41,7 +41,7 @@ const NoteList = props => {
     console.log(props.notes);
   };
 
-  const onNoteClick = (note) => {
+  const onNoteClick = (currentNoteIndex) => {
 
     // event.preventDefault();
     // console.log("note selection event: ", event);
@@ -52,9 +52,9 @@ const NoteList = props => {
     // console.log("looking up note index: ", nextNoteIndex)
     // let nextCurrentNote = props.notes[event.target.noteindex];
 
-    console.log("changing to note with ID: ", note.id)
+    console.log("changing to note with ID: ", props.notes[currentNoteIndex].id);
     props.dispatch(
-      updateCurrentNote(note)
+      updateCurrentNote(currentNoteIndex)
     );
   };
 
@@ -76,8 +76,8 @@ const NoteList = props => {
                     <ListItemText
                       primary={note.body.split("\n")[0].replace(/<\/?[^>]+(>|$)/g, "").substr(0, 25)}
                       // noteid={note.id}
-                      // noteindex={index}
-                      onClick={() => onNoteClick(note)}
+                      noteindex={index}
+                      onClick={() => onNoteClick(index)}
                     />
                   </ListItemButton>
                 </ListItem>
