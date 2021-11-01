@@ -20,7 +20,6 @@ const initialState = {
     created: "2021-09-27T12:00:00",
     lastViewed: "2021-09-27T14:00:00",
   }
-
 };
 
 export default initialState;
