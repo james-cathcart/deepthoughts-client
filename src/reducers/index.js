@@ -1,7 +1,6 @@
-import initialState from "../constants/InitialState";
 import {v4 as uuidv4} from 'uuid';
 
-export function notesReducer(state = initialState, action) {
+export function notesReducer(state = {}, action) {
 
   let notes = {};
 
@@ -18,8 +17,7 @@ export function notesReducer(state = initialState, action) {
       };
 
     case 'CURRENT_NOTE':
-      console.log("current note: ", state.currentNote)
-      console.log("notes reducer -> updating current note: ", action.payload);
+      console.log("notes reducer -> updating current note");
       let currentNote = action.payload;
       return {
         ...state,
@@ -27,10 +25,18 @@ export function notesReducer(state = initialState, action) {
       };
 
     case 'SAVE_NOTE_CHANGES':
-      console.log("saving note changes...");
+      console.log("notes reducer -> saving note changes...");
       let updatedNote = action.payload
       notes = { ...state.notes };
       notes[updatedNote.id] = action.payload;
+      return {
+        ...state,
+        notes
+      };
+
+    case 'FETCH_NOTES_SUCCEEDED':
+      console.log("notes reducer -> loading notes from database");
+      notes = action.payload;
       return {
         ...state,
         notes
@@ -49,6 +55,6 @@ function generateNewNote() {
     id: uuidv4().toString(),
     body: "<h1>New Note</h1>\n<p>Enter text here...</p>",
     created: null,
-    lastViewed: null,
+    edited: null,
   }
 }

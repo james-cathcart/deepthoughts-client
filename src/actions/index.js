@@ -1,3 +1,5 @@
+import * as api from "../api";
+
 export function createNewNote() {
   console.log("new note action creator")
   return {
@@ -12,7 +14,7 @@ export function updateCurrentNote(note) {
     payload: {
       id: note.id,
       body: note.body,
-      lastViewed: note.lastViewed,
+      edited: note.edited,
       created: note.created,
     }
   };
@@ -24,7 +26,7 @@ export function saveNoteChangeAction(currentNote, newBody) {
   let updatedNote = {
     id: currentNote.id,
     body: newBody,
-    lastViewed: currentNote.lastViewed,
+    edited: currentNote.edited,
     created: currentNote.created,
   }
 
@@ -33,8 +35,24 @@ export function saveNoteChangeAction(currentNote, newBody) {
     payload: {
       id: updatedNote.id,
       body: updatedNote.body,
-      lastViewed: updatedNote.lastViewed,
+      edited: updatedNote.edited,
       created: updatedNote.created,
     }
   }
+}
+
+export function fetchNotesSucceededAction(notes) {
+  return {
+    type: 'FETCH_NOTES_SUCCEEDED',
+    payload: { ...notes },
+  };
+}
+
+export function fetchNotesAction() {
+
+  return dispatch => {
+    api.fetchNotes().then(resp => {
+      dispatch(fetchNotesSucceededAction(resp.data));
+    });
+  };
 }
