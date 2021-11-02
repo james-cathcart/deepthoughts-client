@@ -1,7 +1,6 @@
-import initialState from "../constants/InitialState";
 import {v4 as uuidv4} from 'uuid';
 
-export function notesReducer(state = initialState, action) {
+export function notesReducer(state = {}, action) {
 
   let notes = {};
 
@@ -49,6 +48,6 @@ function generateNewNote() {
     id: uuidv4().toString(),
     body: "<h1>New Note</h1>\n<p>Enter text here...</p>",
     created: null,
-    lastViewed: null,
+    edited: null,
   }
 }

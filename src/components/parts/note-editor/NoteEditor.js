@@ -41,8 +41,7 @@ const NoteEditor = (props) => {
             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
           }}
         />
-        {/*<button onClick={saveNoteChanges}>Save Changes</button>*/}
-      <br />
+        <br />
         <Button variant='contained' onClick={saveNoteChanges}>Save Changes</Button>
     </div>
   );

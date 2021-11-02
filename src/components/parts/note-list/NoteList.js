@@ -8,8 +8,11 @@ import ListItemText from '@mui/material/ListItemText';
 import {connect} from "react-redux";
 import {Button} from "@mui/material";
 import {createNewNote, updateCurrentNote} from "../../../actions";
+// import {useState} from "react";
 
 const NoteList = props => {
+
+  // const [loaded, setLoaded] = useState(false);
 
   const onNewNoteClick = () => {
     console.log("dispatching new note action")
@@ -25,15 +28,6 @@ const NoteList = props => {
       updateCurrentNote(note)
     );
   };
-
-  // The following Object.entries(...) block is for debugging purposes only:
-  // Object.entries(props.notes).forEach( ([key, value]) => {
-  //   console.log("key: " + key + " value: " + value);
-  //   Object.entries(value).forEach(
-  //     (childKey, childValue) => {
-  //       console.log("\tchildKey: " + childKey + "\n\tchildValue: " + childValue)
-  //     });
-  // } );
 
   return (
     <Box sx={{width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}>
