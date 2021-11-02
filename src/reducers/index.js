@@ -6,6 +6,7 @@ export function notesReducer(state = initialState, action) {
   let notes = {};
 
   switch (action.type) {
+
     case 'NEW_NOTE':
       console.log("notes reducer -> creating new note");
       let newNote = generateNewNote()
@@ -15,7 +16,7 @@ export function notesReducer(state = initialState, action) {
         ...state,
         notes
       };
-    // break;
+
     case 'CURRENT_NOTE':
       console.log("current note: ", state.currentNote)
       console.log("notes reducer -> updating current note: ", action.payload);
@@ -24,7 +25,6 @@ export function notesReducer(state = initialState, action) {
         ...state,
         currentNote
       };
-    // break;
 
     case 'SAVE_NOTE_CHANGES':
       console.log("saving note changes...");
@@ -35,7 +35,6 @@ export function notesReducer(state = initialState, action) {
         ...state,
         notes
       };
-      // break;
 
     default:
       console.log("notes reducer -> default action applied as no valid action type observed: ", action.type)
@@ -48,19 +47,8 @@ export function notesReducer(state = initialState, action) {
 function generateNewNote() {
   return {
     id: uuidv4().toString(),
-    body: "<h1>New Note</h1><p>Enter text here...</p>",
+    body: "<h1>New Note</h1>\n<p>Enter text here...</p>",
     created: null,
     lastViewed: null,
   }
 }
-//
-// function saveNoteChanges(notes, updatedNote) {
-//
-//
-//
-//   let filteredNotes = notes.filter(note => note.id !== updatedNote.id);
-//   filteredNotes.push(updatedNote);
-//
-//   return filteredNotes;
-//
-// }
