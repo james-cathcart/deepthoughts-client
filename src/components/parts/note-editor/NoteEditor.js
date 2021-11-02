@@ -4,6 +4,7 @@ import { Editor } from "@tinymce/tinymce-react";
 import { useRef } from "react";
 import {connect} from "react-redux";
 import {saveNoteChangeAction} from "../../../actions";
+import {Button} from "@mui/material";
 
 const NoteEditor = (props) => {
 
@@ -40,7 +41,9 @@ const NoteEditor = (props) => {
             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
           }}
         />
-        <button onClick={saveNoteChanges}>Save Changes</button>
+        {/*<button onClick={saveNoteChanges}>Save Changes</button>*/}
+      <br />
+        <Button variant='contained' onClick={saveNoteChanges}>Save Changes</Button>
     </div>
   );
 
