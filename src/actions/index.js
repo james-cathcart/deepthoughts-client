@@ -18,18 +18,23 @@ export function updateCurrentNote(note) {
   };
 }
 
-// const onNewNoteClick = () => {
-//   props.dispatch({
-//     type: 'NEW_NOTE',
-//   })
-// };
-//
-// const onNoteClick = (event) => {
-//
-//   props.dispatch({
-//     type: 'CURRENT_NOTE',
-//     payload: {
-//       currentNote: nextCurrentNote
-//     }
-//   })
-// };
+export function saveNoteChangeAction(currentNote, newBody) {
+  console.log("creating action: save note changes: ", newBody);
+
+  let updatedNote = {
+    id: currentNote.id,
+    body: newBody,
+    lastViewed: currentNote.lastViewed,
+    created: currentNote.created,
+  }
+
+  return {
+    type: 'SAVE_NOTE_CHANGES',
+    payload: {
+      id: updatedNote.id,
+      body: updatedNote.body,
+      lastViewed: updatedNote.lastViewed,
+      created: updatedNote.created,
+    }
+  }
+}

@@ -11,28 +11,6 @@ import {createNewNote, updateCurrentNote} from "../../../actions";
 
 const NoteList = props => {
 
-  // const [loaded, setLoaded] = useState(false);
-  // const [notes, setNotes] = useState([]);
-  //
-  // let url = new URL("http://localhost:8080/api/v1/note");
-  // let params = [
-  //   // ['userid', props.userid]
-  //   ['userid', 'asdfasdf']
-  // ];
-  // url.search = new URLSearchParams(params).toString();
-  //
-  // useEffect(
-  //   () => {
-  //     if (!loaded) {
-  //       fetch(url)
-  //       .then(res => res.json())
-  //       .then(jsonResponse => setNotes(jsonResponse))
-  //       .then(() => setLoaded(true))
-  //     }
-  //   }
-  // );
-
-
   const onNewNoteClick = () => {
     console.log("dispatching new note action")
     props.dispatch(
@@ -42,21 +20,20 @@ const NoteList = props => {
   };
 
   const onNoteClick = (note) => {
-
-    // event.preventDefault();
-    // console.log("note selection event: ", event);
-    //
-    // console.log("dispatching current note update action")
-    // let nextNoteIndex = event.target.noteindex;
-    //
-    // console.log("looking up note index: ", nextNoteIndex)
-    // let nextCurrentNote = props.notes[event.target.noteindex];
-
     console.log("changing to note with ID: ", note.id)
     props.dispatch(
       updateCurrentNote(note)
     );
   };
+
+  // The following Object.entries(...) block is for debugging purposes only:
+  // Object.entries(props.notes).forEach( ([key, value]) => {
+  //   console.log("key: " + key + " value: " + value);
+  //   Object.entries(value).forEach(
+  //     (childKey, childValue) => {
+  //       console.log("\tchildKey: " + childKey + "\n\tchildValue: " + childValue)
+  //     });
+  // } );
 
   return (
     <Box sx={{width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}>
@@ -64,20 +41,14 @@ const NoteList = props => {
       <nav aria-label="main mailbox folders">
         <List>
           {
-            props.notes != null && props.notes.length > 0
-              ? props.notes.map(
-              (note, index) => (
-                <ListItem key={index}
-                          // noteid={note.id}
-                          // noteindex={index}
-                          // onClick={(e) => onNoteClick(e)}
-                          disablePadding>
+            props.notes != null && Object.entries.length > 0
+              ? Object.entries(props.notes).map(
+              ([key, value]) => (
+                <ListItem key={key} disablePadding>
                   <ListItemButton>
                     <ListItemText
-                      primary={note.body.split("\n")[0].replace(/<\/?[^>]+(>|$)/g, "").substr(0, 25)}
-                      // noteid={note.id}
-                      // noteindex={index}
-                      onClick={() => onNoteClick(note)}
+                      primary={value.body.split("\n")[0].replace(/<\/?[^>]+(>|$)/g, "").substr(0, 25)}
+                      onClick={() => onNoteClick(value)}
                     />
                   </ListItemButton>
                 </ListItem>
@@ -94,9 +65,9 @@ const NoteList = props => {
     </Box>
   );
 }
-// export default NoteList;
 
 const mapStateToProps = (state) => {
   return { notes: state.notes };
 }
+
 export default connect(mapStateToProps)(NoteList);
