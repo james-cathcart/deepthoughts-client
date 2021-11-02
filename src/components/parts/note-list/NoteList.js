@@ -7,12 +7,13 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import {connect} from "react-redux";
 import {Button} from "@mui/material";
-import {createNewNote, updateCurrentNote} from "../../../actions";
-// import {useState} from "react";
+import {createNewNote, fetchNotesAction, updateCurrentNote} from "../../../actions";
+import {useEffect} from "react";
+import {useState} from "react";
 
 const NoteList = props => {
 
-  // const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
   const onNewNoteClick = () => {
     console.log("dispatching new note action")
@@ -28,6 +29,13 @@ const NoteList = props => {
       updateCurrentNote(note)
     );
   };
+
+  useEffect(() => {
+    if (!loaded) {
+      props.dispatch(fetchNotesAction());
+      setLoaded(true);
+    }
+  }, [loaded, props]);
 
   return (
     <Box sx={{width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}>
@@ -61,7 +69,7 @@ const NoteList = props => {
 }
 
 const mapStateToProps = (state) => {
-  return { notes: state.notes };
+  return {notes: state.notes};
 }
 
 export default connect(mapStateToProps)(NoteList);

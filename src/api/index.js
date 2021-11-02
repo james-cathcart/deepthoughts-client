@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = 'http://localhost:8080';
+const API_BASE_URL = 'http://localhost:8080/api/v1';
 
 const client = axios.create({
   baseURL: API_BASE_URL,
@@ -10,5 +10,5 @@ const client = axios.create({
 });
 
 export function fetchNotes() {
-  return client.get('http://localhost:8080/api/v1/note');
+  return client.get('/note?userid=1');
 }

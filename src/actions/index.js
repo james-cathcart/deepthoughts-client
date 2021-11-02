@@ -41,18 +41,18 @@ export function saveNoteChangeAction(currentNote, newBody) {
   }
 }
 
-export function fetchNotesSucceeded(notes) {
+export function fetchNotesSucceededAction(notes) {
   return {
     type: 'FETCH_NOTES_SUCCEEDED',
-    payload: notes,
+    payload: { ...notes },
   };
 }
 
-export function fetchTasks() {
+export function fetchNotesAction() {
 
   return dispatch => {
-    api.fetchNotes(resp => {
-      dispatch(fetchNotesSucceeded(resp.data));
+    api.fetchNotes().then(resp => {
+      dispatch(fetchNotesSucceededAction(resp.data));
     });
   };
 }

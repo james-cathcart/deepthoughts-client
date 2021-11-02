@@ -23,7 +23,7 @@ const NoteEditor = (props) => {
     <div className="editorContainer">
         <Editor
           onInit={(evt, editor) => editorRef.current = editor}
-          initialValue={ props.currentNote.body }
+          initialValue={ props.currentNote !== undefined ? props.currentNote.body : "" }
           init={{
             skin: "oxide-dark",
             content_css: "dark",
