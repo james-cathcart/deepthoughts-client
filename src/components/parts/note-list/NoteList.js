@@ -20,12 +20,20 @@ const NoteList = props => {
   };
 
   const onNoteClick = (note) => {
-
     console.log("changing to note with ID: ", note.id)
     props.dispatch(
       updateCurrentNote(note)
     );
   };
+
+  // The following Object.entries(...) block is for debugging purposes only:
+  // Object.entries(props.notes).forEach( ([key, value]) => {
+  //   console.log("key: " + key + " value: " + value);
+  //   Object.entries(value).forEach(
+  //     (childKey, childValue) => {
+  //       console.log("\tchildKey: " + childKey + "\n\tchildValue: " + childValue)
+  //     });
+  // } );
 
   return (
     <Box sx={{width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}>
@@ -33,20 +41,14 @@ const NoteList = props => {
       <nav aria-label="main mailbox folders">
         <List>
           {
-            props.notes != null && props.notes.length > 0
-              ? props.notes.map(
-              (note, index) => (
-                <ListItem key={index}
-                          // noteid={note.id}
-                          // noteindex={index}
-                          // onClick={(e) => onNoteClick(e)}
-                          disablePadding>
+            props.notes != null && Object.entries.length > 0
+              ? Object.entries(props.notes).map(
+              ([key, value]) => (
+                <ListItem key={key} disablePadding>
                   <ListItemButton>
                     <ListItemText
-                      primary={note.body.split("\n")[0].replace(/<\/?[^>]+(>|$)/g, "").substr(0, 25)}
-                      // noteid={note.id}
-                      // noteindex={index}
-                      onClick={() => onNoteClick(note)}
+                      primary={value.body.split("\n")[0].replace(/<\/?[^>]+(>|$)/g, "").substr(0, 25)}
+                      onClick={() => onNoteClick(value)}
                     />
                   </ListItemButton>
                 </ListItem>
@@ -63,9 +65,9 @@ const NoteList = props => {
     </Box>
   );
 }
-// export default NoteList;
 
 const mapStateToProps = (state) => {
   return { notes: state.notes };
 }
+
 export default connect(mapStateToProps)(NoteList);
