@@ -10,7 +10,7 @@ export function notesReducer(state = initialState, action) {
     case 'NEW_NOTE':
       console.log("notes reducer -> creating new note");
       let newNote = generateNewNote()
-      notes = { ...state.notes };
+      notes = {...state.notes};
       notes[newNote.id] = newNote;
       return {
         ...state,
@@ -28,8 +28,8 @@ export function notesReducer(state = initialState, action) {
 
     case 'SAVE_NOTE_CHANGES':
       console.log("saving note changes...");
-      notes = { ...state.notes };
       let updatedNote = action.payload
+      notes = { ...state.notes };
       notes[updatedNote.id] = action.payload;
       return {
         ...state,
