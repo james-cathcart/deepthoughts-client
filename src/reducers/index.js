@@ -3,15 +3,14 @@ import {v4 as uuidv4} from 'uuid';
 
 export function notesReducer(state = initialState, action) {
 
-  let notes = undefined;
+  let notes = {};
 
   switch (action.type) {
     case 'NEW_NOTE':
       console.log("notes reducer -> creating new note");
       let newNote = generateNewNote()
-      notes = [...state.notes];
-      notes.push(newNote);
-      console.log("new notes list: " + state.notes)
+      notes = { ...state.notes };
+      notes[newNote.id] = newNote;
       return {
         ...state,
         notes
@@ -29,9 +28,9 @@ export function notesReducer(state = initialState, action) {
 
     case 'SAVE_NOTE_CHANGES':
       console.log("saving note changes...");
-      notes = [...state.notes]
+      notes = { ...state.notes };
       let updatedNote = action.payload
-      notes = saveNoteChanges(notes, updatedNote);
+      notes[updatedNote.id] = action.payload;
       return {
         ...state,
         notes
@@ -54,12 +53,14 @@ function generateNewNote() {
     lastViewed: null,
   }
 }
-
-function saveNoteChanges(notes, updatedNote) {
-
-  let filteredNotes = notes.filter(note => note.id !== updatedNote.id);
-  filteredNotes.push(updatedNote);
-
-  return filteredNotes;
-
-}
+//
+// function saveNoteChanges(notes, updatedNote) {
+//
+//
+//
+//   let filteredNotes = notes.filter(note => note.id !== updatedNote.id);
+//   filteredNotes.push(updatedNote);
+//
+//   return filteredNotes;
+//
+// }
