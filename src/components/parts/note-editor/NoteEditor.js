@@ -9,10 +9,11 @@ import {Button} from "@mui/material";
 const NoteEditor = (props) => {
 
   const editorRef = useRef(null);
+
   const saveNoteChanges = () => {
     if (editorRef.current) {
       let newBody = editorRef.current.getContent();
-      console.log(newBody);
+      console.log("new body: ", newBody);
       props.dispatch(
         saveNoteChangeAction(props.currentNote, newBody)
       )

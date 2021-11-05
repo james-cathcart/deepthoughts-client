@@ -44,7 +44,7 @@ export function saveNoteChangeAction(currentNote, newBody) {
 export function fetchNotesSucceededAction(notes) {
   return {
     type: 'FETCH_NOTES_SUCCEEDED',
-    payload: { ...notes },
+    payload: [ ...notes ],
   };
 }
 
